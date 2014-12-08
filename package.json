@@ -1,0 +1,33 @@
+{
+  "name": "ot-availability-phrases",
+  "version": "1.0.0",
+  "description": "Utility functions for dealing with availability phrases",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/opentable/ot-availability-phrases.git"
+  },
+  "keywords": [
+    "ot"
+  ],
+  "author": "Andy Royle <aroyle@opentable.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opentable/ot-availability-phrases/issues"
+  },
+  "homepage": "https://github.com/opentable/ot-availability-phrases",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-cli": "^0.1.13",
+    "grunt-mocha-test": "^0.10.0",
+    "should": "^3.2.0",
+    "grunt-contrib-jshint": "^0.9.2"
+  },
+  "dependencies": {
+    "underscore": "^1.7.0",
+    "moment": "^2.7.0"
+  }
+}
