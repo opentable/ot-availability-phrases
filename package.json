@@ -1,6 +1,6 @@
 {
   "name": "ot-availability-phrases",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Utility functions for dealing with availability phrases",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,8 @@
     "grunt-contrib-jshint": "^0.9.2"
   },
   "dependencies": {
-    "underscore": "^1.7.0",
-    "moment": "^2.7.0"
+    "moment": "^2.7.0",
+    "ot-localised-days": "^0.1.0",
+    "underscore": "^1.7.0"
   }
 }
