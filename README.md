@@ -42,14 +42,11 @@ console.log(phrases[0]);
 
 ```
 
-Supported languages:
+__getAvailabilityPhrases(locale, schedule)__
 
-- en
-- en-US (returns 12 hour time format)
-- de
-- fr
-- es
-- ja
+- locale: can either be a string (e.g. `en-GB`, `en`) or an array of languages (sorted by quality) `[{ code: 'en', region: 'GB', quality: 1.0}, ... ]` (as given by [accept-language-parser](https://www.npmjs.com/package/accept-language-parser)
+
+- schedule: array of days with an array of time-ranges for each
 
 __Running tests__
 ```

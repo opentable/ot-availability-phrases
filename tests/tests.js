@@ -147,7 +147,7 @@ describe('languages tests', function(){
     ])
     phrases[0].should.eql('Sun-Tue 9:35AM-2:15PM');
   });
-  
+
   it('should return German day abbreviations when given de-DE', function(){
     var sched = [{
       First: '09:35:00',
@@ -167,7 +167,7 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('So-Di 09:35-14:15');
+    phrases[0].should.eql('So.-Di. 09:35-14:15');
   });
 
   it('should return French day abbreviations when given fr-CA', function(){
@@ -189,7 +189,7 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('Dim-Mar 09:35-14:15');
+    phrases[0].should.eql('dim.-mar. 09:35-14:15');
   });
 
   it('should return Spanish day abbreviations when given es-MX', function(){
@@ -211,7 +211,7 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('Sáb-Lun 09:35-14:15');
+    phrases[0].should.eql('Dom.-Mar. 09:35-14:15');
   });
 
   it('should return Japanese day abbreviations when given ja-JP', function(){
@@ -233,7 +233,7 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('日曜日-火曜日 09:35-14:15');
+    phrases[0].should.eql('日-火 09:35-14:15');
   });
 
   it('should return cope with a partial language code (as opposed to IETF)', function(){
@@ -255,6 +255,32 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('So-Di 09:35-14:15');
+    phrases[0].should.eql('So.-Di. 09:35-14:15');
+  });
+
+  it('should pick the first language when given an array', function(){
+    var sched = [{
+      First: '09:35:00',
+      Last: '14:15:00'
+    }];
+    var phrases = builder.getAvailabilityPhrases([
+        { code: 'de', region:'DE', quality: 1.0 },
+        { code: 'de', region:'', quality: 0.8 },
+        { code: 'en', region:'', quality: 0.6 }
+    ], [
+    {
+      DayOfWeek: 0,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 1,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 2,
+      Schedule: sched
+    },
+    ])
+    phrases[0].should.eql('So.-Di. 09:35-14:15');
   });
 });
