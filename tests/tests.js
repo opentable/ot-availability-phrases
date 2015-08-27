@@ -236,7 +236,7 @@ describe('languages tests', function(){
     phrases[0].should.eql('日-火 09:35-14:15');
   });
 
-  it('should return cope with a partial language code (as opposed to IETF)', function(){
+  it('should cope with a partial language code (as opposed to IETF)', function(){
     var sched = [{
       First: '09:35:00',
       Last: '14:15:00'
@@ -256,6 +256,30 @@ describe('languages tests', function(){
     },
     ])
     phrases[0].should.eql('So.-Di. 09:35-14:15');
+  });
+
+  it('should build the IETF code when given a language array', function(){
+    var sched = [{
+      First: '09:35:00',
+      Last: '14:15:00'
+    }];
+    var phrases = builder.getAvailabilityPhrases([
+        { code: 'en', region: 'GB', quality: 1.0 }
+    ], [
+    {
+      DayOfWeek: 0,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 1,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 2,
+      Schedule: sched
+    },
+    ])
+    phrases[0].should.eql('Sun-Tue 09:35-14:15');
   });
 
   it('should pick the first language when given an array', function(){
@@ -282,5 +306,27 @@ describe('languages tests', function(){
     },
     ])
     phrases[0].should.eql('So.-Di. 09:35-14:15');
+  });
+
+  it('should default to en-US when given an empty array', function(){
+    var sched = [{
+      First: '09:35:00',
+      Last: '14:15:00'
+    }];
+    var phrases = builder.getAvailabilityPhrases([], [
+    {
+      DayOfWeek: 0,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 1,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 2,
+      Schedule: sched
+    },
+    ])
+    phrases[0].should.eql('Sun-Tue 9:35AM-2:15PM');
   });
 });
