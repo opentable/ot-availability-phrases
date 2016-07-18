@@ -211,7 +211,7 @@ describe('languages tests', function(){
       Schedule: sched
     },
     ])
-    phrases[0].should.eql('Dom.-Mar. 09:35-14:15');
+    phrases[0].should.eql('dom.-mar. 09:35-14:15');
   });
 
   it('should return Japanese day abbreviations when given ja-JP', function(){
