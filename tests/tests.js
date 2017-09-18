@@ -123,6 +123,34 @@ describe('day-schedule tests', function(){
     ])
     phrases[0].should.eql('Daily 09:35-14:15');
   });
+
+  it('order of time slots on the same day shouldn\'t matter', function () {
+    var sched = [
+      {
+        First: '09:35:00',
+        Last: '11:15:00'
+      },
+      {
+        First: '15:40:00',
+        Last: '22:30:00'
+      },
+      {
+        First: '13:35:00',
+        Last: '14:15:00'
+      }
+    ];
+    var phrases = builder.getAvailabilityPhrases('en-GB', [
+    {
+      DayOfWeek: 0,
+      Schedule: sched
+    },
+    {
+      DayOfWeek: 1,
+      Schedule: sched
+    }
+    ])
+    phrases[0].should.eql('Sun-Mon 09:35-11:15 13:35-14:15 15:40-22:30');
+  });
 });
 
 describe('languages tests', function(){
